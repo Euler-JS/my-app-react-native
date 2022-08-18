@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { useState } from 'react';
 
 export default function App() {
@@ -27,6 +27,11 @@ export default function App() {
       </View>
 
       <Text style={styles.text}>{name} on React Native</Text>
+      <TextInput 
+        placeholder='Digite o teu nome'
+        style={styles.input}
+        onChangeText={(val) => setName(val)}
+      />
       <Text style={styles.text}>{person.nome} {contador} on React Native, {person.idade}</Text>
       <View style={styles.buttonContainer}>
         <Button title='Update State' onPress={clickHandler}/>
@@ -52,6 +57,13 @@ const styles = StyleSheet.create({
   },
   buttonContainer:{
     margin:20
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#777',
+    padding: 8,
+    margin: 10,
+    width: '80%',
   }
 
 });
