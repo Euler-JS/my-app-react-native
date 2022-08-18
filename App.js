@@ -1,19 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { useState } from 'react';
 
 export default function App() {
+  const [name, setName] = useState('Euler-JS');
+  const [person, setPerson] = useState({nome: 'Joao', idade:27});
+
+  const clickHandler = () =>
+  {
+    setName('Jesus Love Me');
+    setPerson({nome: 'Euler', idade:26})
+    setContador(contador + 1);
+    setPerson({nome:person.nome, idade: person.idade + 1})
+  }
+
+  const [contador, setContador] = useState(1);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.tBold}>Hello Jesus</Text>
       </View>
+
       <View style={styles.body}>
         <Text>Body </Text>
       </View>
-      <Text style={styles.text}>Euler JS on React Native</Text>
 
+      <Text style={styles.text}>{name} on React Native</Text>
+      <Text style={styles.text}>{person.nome} {contador} on React Native, {person.idade}</Text>
+      <View style={styles.buttonContainer}>
+        <Button title='Update State' onPress={clickHandler}/>
+      </View>
       <Text style={styles.text}>2022</Text>
-      <Text style={styles.text2}>EquipMoz</Text>
+      <Text style={styles.text}>EquipMoz</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -31,20 +50,8 @@ const styles = StyleSheet.create({
     fontSize:44,
     color: '#60A3D9',
   },
-  text2:{
-    fontSize:140,
-    color: '#050A30',
-  },
-  header:{
-    backgroundColor: 'pink',
-    padding: 20,
-    width: '100%',
-  },
-  body:{
-    backgroundColor: 'yellow',
-    width: '100%'
-  },
-  tBold:{
-    fontWeight: 'bold'
+  buttonContainer:{
+    margin:20
   }
+
 });
