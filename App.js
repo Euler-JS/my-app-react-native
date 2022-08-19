@@ -1,11 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TextInput, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, FlatList, Text} from 'react-native';
 import { useState } from 'react';
+import Header from './components/header';
 
 export default function App() {
-  const [name, setName] = useState('Euler-JS');
-  const [person, setPerson] = useState({nome: 'Joao', idade:27});
-  const [pessoas, setPessoa] = useState([
+  const [todos, setTodos] = useState([
     {nome:"Joao",id:1},
     {nome:"Lucas",id:3},
     {nome:"Mateus",id:2},
@@ -17,37 +16,22 @@ export default function App() {
     {nome:"Rute",id:9},
     {nome:"Saulo",id:10},
   ])
-
-  const clickHandler = () =>
-  {
-    setName('Jesus Love Me');
-    setPerson({nome: 'Euler', idade:26})
-    setContador(contador + 1);
-    setPerson({nome:person.nome, idade: person.idade + 1})
-  }
-
-  const desativa = (id) =>
-  {
-    setPessoa((listaAnterior) =>{
-        return listaAnterior.filter(pessoa => pessoa.id != id)
-    })
-  }
-
-  const [contador, setContador] = useState(1);
-
+  
   return (
     <View style={styles.container}>
-      <FlatList 
-        numColumns={2}
-        keyExtractor={(item) => item.id}
-        data={pessoas}
-        renderItem= {({item})=>(
-          <TouchableOpacity onPress={()=> desativa(item.id)}>
-            <Text style={styles.text}>{item.nome}</Text>
-          </TouchableOpacity>
-          
-        )}
-      />
+        {/* header */}
+        <Header />
+        <View style={styles.content}>
+          {/* todo form */}
+          <View style={styles.list}>
+            <FlatList
+              data={todos}
+              renderItem = { ({ item }) =>(
+                <Text>{item.nome}</Text>
+              )}
+            />
+          </View>
+        </View>
     </View>
   );
 }
@@ -56,29 +40,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop:40,
-    padding:20
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
-
-  text:{
-    fontSize:44,
-    color: '#60A3D9',
-    // marginTop:40,
-    padding:20,
-    backgroundColor:'#000',
-    margin:20
+  content:
+  {
+    padding: 40,
   },
-  buttonContainer:{
-    margin:20
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#777',
-    padding: 8,
-    margin: 10,
-    width: '80%',
+  list: {
+    margin: 20,
   }
 
 });
