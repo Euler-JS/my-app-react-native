@@ -1,10 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, FlatList, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 
 export default function App() {
   const [name, setName] = useState('Euler-JS');
   const [person, setPerson] = useState({nome: 'Joao', idade:27});
+  const [pessoas, setPessoa] = useState([
+    {nome:"Joao",id:1},
+    {nome:"Lucas",id:3},
+    {nome:"Mateus",id:2},
+    {nome:"Marcos",id:5},
+    {nome:"Paulo",id:4},
+    {nome:"Isaias",id:6},
+    {nome:"Samuel",id:7},
+    {nome:"Moises",id:8},
+    {nome:"Rute",id:9},
+    {nome:"Saulo",id:10},
+  ])
 
   const clickHandler = () =>
   {
@@ -14,31 +26,28 @@ export default function App() {
     setPerson({nome:person.nome, idade: person.idade + 1})
   }
 
+  const desativa = (id) =>
+  {
+    setPessoa((listaAnterior) =>{
+        return listaAnterior.filter(pessoa => pessoa.id != id)
+    })
+  }
+
   const [contador, setContador] = useState(1);
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.tBold}>Hello Jesus</Text>
-      </View>
-
-      <View style={styles.body}>
-        <Text>Body </Text>
-      </View>
-
-      <Text style={styles.text}>{name} on React Native</Text>
-      <TextInput 
-        placeholder='Digite o teu nome'
-        style={styles.input}
-        onChangeText={(val) => setName(val)}
+      <FlatList 
+        numColumns={2}
+        keyExtractor={(item) => item.id}
+        data={pessoas}
+        renderItem= {({item})=>(
+          <TouchableOpacity onPress={()=> desativa(item.id)}>
+            <Text style={styles.text}>{item.nome}</Text>
+          </TouchableOpacity>
+          
+        )}
       />
-      <Text style={styles.text}>{person.nome} {contador} on React Native, {person.idade}</Text>
-      <View style={styles.buttonContainer}>
-        <Button title='Update State' onPress={clickHandler}/>
-      </View>
-      <Text style={styles.text}>2022</Text>
-      <Text style={styles.text}>EquipMoz</Text>
-      <StatusBar style="auto" />
     </View>
   );
 }
@@ -47,13 +56,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop:40,
+    padding:20
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 
   text:{
     fontSize:44,
     color: '#60A3D9',
+    // marginTop:40,
+    padding:20,
+    backgroundColor:'#000',
+    margin:20
   },
   buttonContainer:{
     margin:20
