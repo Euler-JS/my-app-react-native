@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, FlatList, Text} from 'react-native';
+import { StyleSheet, View, FlatList, Text, Alert} from 'react-native';
 import { useState } from 'react';
 import Header from './components/header';
 import TodoItem from './components/todoitem';
@@ -32,12 +32,23 @@ export default function App() {
 
   const addAmigo = (amigo) =>
   {
-    setTodos((listaAntiga)=>{
-      return [
-        {nome: amigo, id: Math.random().toString()},
-        ... listaAntiga
-      ]
-    })
+    if(amigo.length > 3)
+    {
+        setTodos((listaAntiga)=>{
+        return [
+          {nome: amigo, id: Math.random().toString()},
+          ... listaAntiga
+        ]
+      })
+    }
+    else
+    {
+      Alert.alert('Opa', 'O nome do teu amigo deve ter pelo menos 4 letras.',
+      [
+        {text:'Ok', onPress:() => console.log('Alert close')}
+      ])
+    }
+    
   }
 
   
