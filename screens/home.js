@@ -5,7 +5,7 @@ export default function Home()
 {
     return (
         <View style={globalStyles.container}>
-            <Text style={globalStyles.titletext}>Home</Text>
+            <Text style={globalStyles.titletext}>Home - Euler JS</Text>
         </View>
     )
 }
