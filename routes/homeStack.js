@@ -21,9 +21,29 @@ const Stack = createNativeStackNavigator();
 function App() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Review Details" component={ReviewDetails} />
+        <Stack.Navigator initialRouteName="Home"
+            screenOptions={{
+                headerMode: 'screen',
+                headerTintColor: 'white',
+                headerStyle: { backgroundColor: 'tomato' },
+            }}>
+          <Stack.Screen name="Home" component={Home} 
+          />
+          <Stack.Screen 
+                name="Review Details" 
+                component={ReviewDetails} 
+                // options=
+                // {
+                //     { headerShown: true ,
+                //     headerBackTitle:'Alo',
+                //     headerBlurEffect: true,
+                //     }
+                // }
+                screenOptions={{
+                    headerTintColor: 'black',
+                    headerStyle: { backgroundColor: 'black' },
+                  }}
+        />
         </Stack.Navigator>
       </NavigationContainer>
     );
