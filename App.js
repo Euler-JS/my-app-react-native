@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { StyleSheet, View, FlatList, Text, Alert} from 'react-native';
 import React, { useState } from 'react';
 import * as Font from 'expo-font';
