@@ -8,13 +8,13 @@ export const globalStyles = StyleSheet.create({
     },
     titletext:
     {
-        fontFamily: 'nunito-bold',
+        // fontFamily: 'nunito-bold',
         fontSize: 20,
         color: '#333'
     },
     subtitletext:
     {
-        fontFamily: 'nunito-regular',
+        // fontFamily: 'nunito-regular',
         fontSize: 16,
         color: '#333'
     },
